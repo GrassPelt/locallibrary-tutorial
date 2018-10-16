@@ -168,8 +168,8 @@ exports.author_update_post = [
     // Validate fields. could also add ability for non-alphanumeric characters to be avoided.
     body('first_name', 'First Name must not be empty.').isLength({ min: 1 }).trim(),
     body('family_name', 'Last Name must not be empty.').isLength({ min: 1 }).trim(),
-    body('date_of_birth', 'Invalid Date.').isLength({ min: 1 }).trim(), //.optional?
-    body('date_of_death', 'Invalid Date').isLength({ min: 1 }).trim(),
+    body('date_of_birth', 'Invalid Date.').trim().optional(),
+    body('date_of_death', 'Invalid Date').trim().optional(),
 
     // Sanitize fields.
     sanitizeBody('first_name').trim().escape(),
@@ -187,7 +187,7 @@ exports.author_update_post = [
         var author = new Author(
           { first_name: req.body.first_name,
             family_name: req.body.family_name,
-            date_of_birth: req.body.date_of_brith,
+            date_of_birth: req.body.date_of_birth,
             date_of_death: req.body.date_of_death,
             _id:req.params.id //This is required, or a new ID will be assigned!
            });

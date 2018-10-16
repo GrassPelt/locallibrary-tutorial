@@ -222,7 +222,7 @@ exports.book_update_get = function(req, res, next) {
             Book.findById(req.params.id).populate('author').populate('genre').exec(callback);
         },
         authors: function(callback) {
-            Book.find(callback);
+            Author.find(callback);
         },
         genres: function(callback) {
             Genre.find(callback);
